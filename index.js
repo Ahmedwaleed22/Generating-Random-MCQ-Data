@@ -28,7 +28,7 @@ function generateRandomQuestion() {
 }
 
 function generatingAllQuestions() {
-  const number_of_questions = generateRandomNumber(3, 10);
+  const number_of_questions = generateRandomNumber(2, 15);
 
   let data = [];
 
