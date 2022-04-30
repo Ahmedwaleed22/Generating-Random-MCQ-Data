@@ -4,16 +4,13 @@ const fastLoremIpsum = require("fast-lorem-ipsum");
 const app = express();
 const port = process.env.port || 8000;
 
-function generateRandomQuestion() {
-  const id_min = 1;
-  const id_max = 100;
-  const answer_min = 1;
-  const answer_max = 5;
+function generateRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+}
 
-  const id = Math.floor(Math.random() * (id_max - id_min) + id_min);
-  const answer_number = Math.floor(
-    Math.random() * (answer_max - answer_min) + answer_min
-  );
+function generateRandomQuestion() {
+  const id = generateRandomNumber(1, 100);
+  const answer_number = generateRandomNumber(1, 5);
   const question = fastLoremIpsum(20, "w")
     .split(" ")
     .sort(() => 0.5 - Math.random())
@@ -31,9 +28,11 @@ function generateRandomQuestion() {
 }
 
 function generatingAllQuestions() {
+  const number_of_questions = generateRandomNumber(3, 10);
+
   let data = [];
 
-  for (let i = 0; i <= 10; i++) {
+  for (let i = 0; i <= number_of_questions; i++) {
     data = [...data, generateRandomQuestion()];
   }
 
